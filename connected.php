@@ -8,6 +8,6 @@
 </head>
 <body>
     <h1>La page de <?= $_POST['nom'] ?> </h1>
-    
+ 
 </body>
 </html>

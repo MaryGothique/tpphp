@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="POST" enctype="multipart/form-data">
+
+        <label for="idNom">Nom :</label>
+        <input id="idNom" type="text" name='nom'>
+        <br>
+        <label for="idPrenom">Prenoom :</label>
+        <input id="idPrenom" type="text" name='Prenom'>
+        <br>
+        
+                <label for="idMail">E-Mail : </label>
+                <input type="email" name="email" id="idMail"><br>
+        
+                <label for="idMotDePasse">Mot de passe : </label>
+                <input type="password" name="motDePasse" id="idMotDePasse" required
+                       title="8 caractÃ¨res minimum avec majuscule, minuscule et chiffre"
+                       pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}"><br>
+        
+        <input type="submit" name="enregistrer" value="enregistrer">
+        </form>
+        
+</body>
+</html>

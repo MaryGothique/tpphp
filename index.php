@@ -15,15 +15,20 @@
     <nav>
         <ul>
             <li class="logo" ><a href="index.php"> <img href="image/cuore.jpg"></a></li>
-            <li><a href="pageaccueil.php">LogIn</a></li>
-            <li>Register</li>
+            <li><a href="login.html">LogIn</a></li>
+            <li><a href="register.html">Register </a></li>
             <li>Articles</li>
             <li>To Do List</li>
 
         </ul>
     </nav>
     <!--Si l'utilisateur est enregistré il faut faire simplement la connection, sinon il faut l'enregistrer-->
-    
+    <?php
+    $id = "";
+    $nom = "";
+    $mdp = "";
 
+    $query = 'INSERT INTO utilisateur(id, nom, mdp)VALUES(:id, :nom, :mdp);';
+?>
 </body>
 </html>
