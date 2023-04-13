@@ -17,16 +17,16 @@ if (isset($_POST['register'])) {
     $pwdLenght = mb_strlen($mdp);
     
     if (empty($username) || empty($mdp)) {
-        $msg = 'Compila tutti i campi %s';
+        $msg = 'Riemplir tous les champs';
     } elseif (false === $isUsernameValid) {
-        $msg = 'Lo username non è valido. Sono ammessi solamente caratteri 
-                alfanumerici e l\'underscore. Lunghezza minina 3 caratteri.
-                Lunghezza massima 20 caratteri';
+        $msg = '
+                le username ne est pas valide: ils sont accepte seulement des characteres
+                alphanumeriques et l underschores, minimum 3 characteres';
     } elseif ($pwdLenght < 8 || $pwdLenght > 20) {
-        $msg = 'Lunghezza minima password 8 caratteri.
-                Lunghezza massima 20 caratteri';
+        $msg = 'Longeur minimum 8 characteres.
+                maximum 20 characteres';
     } else {
-        $password_hash = password_hash($password, PASSWORD_BCRYPT);
+        $password_hash = password_hash($mdp, PASSWORD_BCRYPT);
 
         $query = "
             SELECT id
@@ -35,7 +35,7 @@ if (isset($_POST['register'])) {
         ";
         
         $check = $pdo->prepare($query);
-        $check->bindParam(':username', $username, PDO::PARAM_STR);
+        $check->bindParam(':username', $id, PDO::PARAM_STR);
         $check->execute();
         
         $user = $check->fetchAll(PDO::FETCH_ASSOC);
@@ -49,7 +49,7 @@ if (isset($_POST['register'])) {
             ";
         
             $check = $pdo->prepare($query);
-            $check->bindParam(':id', $username, PDO::PARAM_STR);
+            $check->bindParam(':id', $id, PDO::PARAM_STR);
             $check->bindParam(':mdp', $password_hash, PDO::PARAM_STR);
             $check->execute();
             

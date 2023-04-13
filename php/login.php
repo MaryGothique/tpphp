@@ -8,11 +8,11 @@ if (isset($_SESSION['session_id'])) {
 }
 
 if (isset($_POST['login'])) {
-    $username = $_POST['username'] ?? '';
-    $password = $_POST['password'] ?? '';
+    $id = $_POST['username'] ?? '';
+    $mdp = $_POST['password'] ?? '';
     
-    if (empty($username) || empty($password)) {
-        $msg = 'Inserisci username e password %s';
+    if (empty($id) || empty($mdp)) {
+        $msg = 'id et mdp, s\'il te plait!';
     } else {
         $query = "
             SELECT username, password
@@ -21,12 +21,12 @@ if (isset($_POST['login'])) {
         ";
         
         $check = $pdo->prepare($query);
-        $check->bindParam(':username', $username, PDO::PARAM_STR);
+        $check->bindParam(':username', $id, PDO::PARAM_STR);
         $check->execute();
         
         $user = $check->fetch(PDO::FETCH_ASSOC);
         
-        if (!$user || password_verify($password, $user['password']) === false) {
+        if (!$user || password_verify($mdp, $user['password']) === false) {
             $msg = 'Credenziali utente errate %s';
         } else {
             session_regenerate_id();
