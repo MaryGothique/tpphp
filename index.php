@@ -7,21 +7,22 @@
     <link rel="stylesheet" href="styles/main.css" >
 
 
-    <title>Document</title>
+    <title>TP PHP</title>
 </head> 
-
-</body>
-
-<h1>To do list</h1>
+<h1>Tp php</h1>
+<h2>To do list</h2>
+<!--liste home-->
     <nav>
-        <ol>
-            <Li>Logo</Li>
-            <Li>LogIn</Li>
-            <Li>Articles</Li>
+        <ul>
+            <li class="logo" ><a href="index.php"> <img href="image/cuore.jpg"></a></li>
+            <li><a href="pageaccueil.php">LogIn</a></li>
+            <li>Register</li>
+            <li>Articles</li>
             <li>To Do List</li>
 
-        </ol>
+        </ul>
     </nav>
+    <!--Si l'utilisateur est enregistré il faut faire simplement la connection, sinon il faut l'enregistrer-->
     
 
 </body>

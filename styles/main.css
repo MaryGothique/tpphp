@@ -1,10 +1,11 @@
 li{
-color: white;
+color: rgb(0, 0, 0);
 }
 body{
-    background-color: black;
-    color:white
+    background-color: rgb(245, 245, 245);
+    color:rgb(0, 0, 0)
 }
-nav{
-    
+li.logo{
+    height: 10px;
+    width: 10px;
 }
