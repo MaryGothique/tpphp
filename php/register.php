@@ -1,5 +1,12 @@
 <?php 
+//quand je m' enregistre ne registre pas dans la base de données
+echo '<h1>Enregistrez vous!</h1>';
+
 require_once('database.php');
+if (isset($_SESSION['session_id'])) {
+    header('Location: bienvenue.php');
+    exit;
+}
 
 if (isset($_POST['register'])) {
     $id = $_POST['username'] ?? '';
@@ -41,8 +48,10 @@ if (isset($_POST['register'])) {
         $user = $check->fetchAll(PDO::FETCH_ASSOC);
         
         if (count($user) > 0) {
+
             $msg = 'Nom utilisé';
         } else {
+
             $query = "
                 INSERT INTO users
                 VALUES (0, :name, :mdp)

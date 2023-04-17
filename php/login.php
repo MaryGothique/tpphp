@@ -1,4 +1,6 @@
-<?php 
+<?php
+//la partie que j'ai fait avec les tuto
+echo '<h1>Log in</h1>';
 session_start();
 require_once('database.php');
 
@@ -27,47 +29,49 @@ if (isset($_POST['login'])) {
         $user = $check->fetch(PDO::FETCH_ASSOC);
         
         if (!$user || password_verify($mdp, $user['password']) === false) {
-            $msg = 'Credenziali utente errate %s';
+            $msg = 'n\'est pas bon';
         } else {
             session_regenerate_id();
             $_SESSION['session_id'] = session_id();
             $_SESSION['session_user'] = $user['username'];
             
-            header('Location: dashboard.php');
+            header('Location: connected.php');
             exit;
         }
     }
     
     printf($msg, '<a href="../login.html">torna indietro</a>');
 }
+?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
 
-//Si l'utilisateur est enregistré il faut faire simplement l'access, sinon il faut l'enregistrer
-/*
-echo '<h1> Welcome!</h1>';
+    
+    <h1>Login</h1>
+    <form action="connected.php" method="POST" enctype="multipart/form-data">
 
-if (isset($_POST['ok'])){
-    $tab = ['ok' => $_POST];
-    $message = '';
-    $nom = filter_input(INPUT_POST,'nom', FILTER_SANITIZE_STRING);
-    // dans une variable stocker le mot de pass que etait ecrit dans le formulaire
-//ouvrir une connexion vers la bdd
-// preparer une requete parametre et nommee 
-// attacher mes parametres (bindparam)
-// executer ma requete(soit la requete as functionne et il la redige en "connected" si ne marche pas prevenir l 'utilisateur)
-
-    if (!$nom){
-        $message.='le nom doit obligatoirement être valide.<br>';
-            }
-            //un autre pour le mot de passe
-            $mdp = filter_input(INPUT_POST,'mdp', FILTER_SANITIZE_STRING);
-    if(!$mdp){
-        $message.'Enregistrez vous';
-    }
- /*   if(!$message){
-        //traitement
-        header('location: connected.php');
-        exit();
-    }*/
-
+        <label for="idNom">alias:</label>
+        <input id="idNom" type="text" name='nom' required>
+        <br>
+        
+        
+                <label for="idMotDePasse">Mot de passe : </label>
+                <input type="password" name="motDePasse" id="idMotDePasse" required
+                       title="8 caractÃ¨res minimum avec majuscule, minuscule et chiffre"
+                       pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}"><br>
+        
+        <input type="submit" name="ok" value="ok">
+        </form>
+       
+           
+</body>
+</html>
 
