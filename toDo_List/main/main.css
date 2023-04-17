@@ -1,0 +1,51 @@
+/* CSS pour mes class "test" visant à visualiser plus facilement mes éléments*/
+.test{
+    border: 1px solid black;
+}
+nav{
+    height: auto;
+    padding: 5px;
+    background-color: bisque;
+}
+img{
+    width: 1%;
+    margin: 1px 1px;
+    }
+
+.boutonNavBar{
+    float: right;
+    margin: 0 10px;
+}
+.bouton{
+    margin: 0 10px;
+}
+main{
+    background-color: beige;
+    padding: 10px;
+}
+h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:0 0 20px 0;
+    padding-top: 20px;
+}
+.todolistZone{
+    height: 250px;
+    display: grid;
+    grid-template-columns: 1px;
+    grid-template-rows: 5px;
+    align-items: center;
+    justify-content: center;
+}
+.todolistDiv{
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+    }
+footer{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
          * On vérifie si le login et le mot de passe existent dans la table
          */
         $rqt = 'SELECT * FROM users WHERE login = :login ';
-        $db_statement = $db_connexion->prepare($rqt);
+        $db_statement = $db_connexion->prepare($rqt); //mon probleme c'est ici
         $db_statement->execute(
             array(
                 ':login' => $login,
