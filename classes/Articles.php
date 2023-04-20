@@ -24,7 +24,7 @@ if(isset($_POST['submit'])&&($_POST['submit']=="Scrivi")){
   // inclusione del file della classe
 include "funzioni_mysql.php";
 // istanza della classe
-$data = new MysqlClass();
+$data = new classes();
 // chiamata alla funzione di connessione
 $data->connetti();
 
