@@ -9,6 +9,7 @@
 <body>
 <h1>Bienvenue <?= $_POST['nom'] ?>! </h1>
 <?php
+
 echo 'créez vous votre article! ici';
 require_once("classes/Articles.php");
 if (isset($_SESSION['session_id'])) {

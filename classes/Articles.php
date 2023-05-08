@@ -50,3 +50,4 @@ Autore:<br>
 <input name="autore" type="text"><br />
 <input name="submit" type="submit" value="Scrivi">
 </form>
+
