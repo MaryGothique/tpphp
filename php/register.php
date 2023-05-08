@@ -123,7 +123,7 @@ if (isset($_POST['register'])) {
         $query = "
             SELECT id
             FROM utilisateur
-            WHERE username = :username
+            WHERE nom = :nom
         ";
         
         $check = $pdo->prepare($query);
@@ -138,7 +138,7 @@ if (isset($_POST['register'])) {
         } else {
 
             $query = "
-                INSERT INTO utilisateyr
+                INSERT INTO utilisateur
                 VALUES (0, :name, :mdp)
             ";
         
