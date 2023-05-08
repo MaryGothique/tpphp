@@ -1,9 +1,9 @@
 <?php
 session_start();
-$nom= $_POST["nom"];
-$mdp = $_POST["mdp"];
-$valider = $_POST["valider"];
-$bonLogin = "utilisateur";
+$nom= $_POST[""];
+$mdp = $_POST[""];
+$valider = $_POST[""];
+$bonLogin = "";
 $bonPass = "";
 $erreur = "";
 if (isset($valider)) {

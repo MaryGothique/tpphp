@@ -2,7 +2,7 @@
 // inizializzazione della sessione
 session_start();
 // controllo sul valore di sessione
-if (!isset($_SESSION['login']))
+if (!isset($_SESSION['']))
 {
  // reindirizzamento alla homepage in caso di login mancato
  header("Location: index.php");
@@ -22,7 +22,7 @@ if(isset($_POST['submit'])&&($_POST['submit']=="Scrivi")){
   }
 
   // inclusione del file della classe
-include "funzioni_mysql.php";
+include "Articles.php";
 // istanza della classe
 $data = new classes();
 // chiamata alla funzione di connessione
