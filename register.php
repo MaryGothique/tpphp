@@ -1,12 +1,12 @@
 <?php 
+session_start();
 
-echo '<h1>Enregistrez vous!</h1>';
+include_once('modeles/db_connexion.php');
 
-include_once('../modeles/db_connexion.php');
-if (isset($_SESSION['session_id'])) {
-    header('Location: bienvenue.php');
-    exit;
-}
+// if (isset($_SESSION['session_id'])) {
+//     header('Location: modeles/db_articles.php');
+//     exit;
+// }
 /**
  * Création de constante des erreurs possibles
  */
@@ -20,7 +20,7 @@ if (isset($_SESSION['session_id'])) {
 
  $errors = [
     'nom' => '',
-    'passwd' => '',
+    'mdp' => '',
 ];
 $message = '';
 
@@ -30,14 +30,14 @@ $message = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_POST = filter_input_array(INPUT_POST, [
         'nom' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-        'passwd' => FILTER_SANITIZE_FULL_SPECIAL_CHARS
+        'mdp' => FILTER_SANITIZE_FULL_SPECIAL_CHARS
 
     ]);
     /**
      * Initialisation des variables qui vont recevoir les datas des champs de formulaire
      */
     $nom = $_POST['nom'] ?? '';
-    $passwd = $_POST['passwd'] ?? '';
+    $mdp = $_POST['mdp'] ?? '';
 
     /**
      * Remplissage du tableau concernant les erreurs possibles  
@@ -46,21 +46,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors['nom'] = ERROR_REQUIRED;
     }
 
-    if (!$passwd) {
-        $errors['passwd'] = ERROR_REQUIRED;
-    } elseif (mb_strlen($passwd) < 10) {
-        $errors['passwd'] = ERROR_PASSWORD_NUMBER_OF_CHARACTERS;
+    if (!$mdp) {
+        $errors['mdp'] = ERROR_REQUIRED;
+    } elseif (mb_strlen($mdp) < 10) {
+        $errors['mdp'] = ERROR_PASSWORD_NUMBER_OF_CHARACTERS;
     }
 
     /**
      * Execution de la requête INSERT INTO
      */
-    if (($passwd) && ($nom)) {
+    if (($mdp) && ($nom)) {
         /**
          * On vérifie si le login existe dans la table
          */
-        $sql = 'SELECT nom FROM utilisateur
-        WHERE nom = :nom ';
+        $sql = 'SELECT nom FROM utilisateurs
+        WHERE nom = :nom '; //je n'ai pas compris pourquoi utilisant 'nom' c'est orange et 'login' c'est bleu, mais dans ma BDD my admin j'ai utilisé toujours 'nom' aussi pour les variables login
         $db_statement = $db_connexion->prepare($sql);
         $db_statement->execute(
             array(
@@ -76,15 +76,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             /**
              * On insert notre utilisateur
              */
-            $rqt = "INSERT INTO utilisateur VALUES (DEFAUlT,:nom,:passwd)";
+            $rqt = "INSERT INTO utilisateurs VALUES (DEFAULT,:nom,:mdp)";
             $db_statement = $db_connexion->prepare($rqt);
             $db_statement->execute(
                 array(
                     ':nom' => $nom,
-                    ':passwd' => password_hash($passwd, PASSWORD_DEFAULT)
+                    ':mdp' => password_hash($mdp, PASSWORD_DEFAULT)
                 )
             );
-            $message = "<span class='message'>Votre compte est crée ! </span>";
+            $message = "<span class='message'>compte crée ! </span>";
         } else {
             $message = "<span class='message'>Le login existe déja ! </span>";
         }
@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if (isset($_POST['register'])) {
     $id = $_POST['username'] ?? '';
     $nom = $_POST['nom'] ??'';
-    $mail = $_POST ['email'] ?? '';
+    
     $mdp = $_POST['password'] ?? '';
     $isUsernameValid = filter_var(
         $id, 
@@ -143,7 +143,7 @@ if (isset($_POST['register'])) {
             ";
         
             $check = $pdo->prepare($query);
-            $check->bindParam(':id', $id, PDO::PARAM_STR);
+            $check->bindParam(':nom', $nom, PDO::PARAM_STR);
             $check->bindParam(':mdp', $password_hash, PDO::PARAM_STR);
             $check->execute();
             
@@ -155,8 +155,9 @@ if (isset($_POST['register'])) {
         }
     }
     
-    printf($msg, '<a href="../register.html">retourner</a>');
+   // printf($msg, '<a href="../register.html">retourner</a>');
 }
+
 
 ?>
 
@@ -187,8 +188,8 @@ if (isset($_POST['register'])) {
         </div>
         <div class="form-control">
 
-            <input type="text" name="passwd" id="passwd" placeholder="Mot de passe">
-            <?= $errors['passwd'] ? '<p class="text-error">' . $errors['passwd'] . '</p>' : "" ?>
+            <input type="text" name="mdp" id="mdp" placeholder="Mot de passe">
+            <?= $errors['mdp'] ? '<p class="text-error">' . $errors['mdp'] . '</p>' : "" ?>
         </div>
 
         <div class="form-control">
@@ -196,7 +197,7 @@ if (isset($_POST['register'])) {
         </div>
 
     </form>
-    <a href="../php/login.php"> Accés à votre compte</a>
+   
 </div>
 
 </section>

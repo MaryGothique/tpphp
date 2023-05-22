@@ -11,11 +11,12 @@
 <?php
 
 echo 'créez vous votre article! ici';
-require_once("classes/Articles.php");
+
 if (isset($_SESSION['session_id'])) {
-    header('Location: Articles.php');
+   // header('Location: modeles/');
     exit;
 }
+
 ?>
 </body>
 </html>

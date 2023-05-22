@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Création d'une instance PDO pour se connecter à tpphp
  */
