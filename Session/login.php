@@ -1,11 +1,13 @@
 <?php
 session_start();
-$nom= $_POST[""];
-$mdp = $_POST[""];
-$valider = $_POST[""];
-$bonLogin = "";
-$bonPass = "";
+/*
+$nom= $_POST["nom"];
+$mdp = $_POST["mdp"];
+$valider = $_POST["valider"];
+$bonLogin = "user";
+$bonPass = "1234";*/
 $erreur = "";
+
 if (isset($valider)) {
     if ($nom == $bonLogin && $mdp == $bonPass) {
         $_SESSION["autoriser"] = "oui";
@@ -25,7 +27,7 @@ if (isset($valider)) {
     </style>
 </head>
 
-<body onLoad="document.fo.login.focus()">
+<body>
     <h1>Authentification</h1>
     <div class="erreur"><?php echo $erreur ?></div>
     <form name="nom" method="post" action="">
