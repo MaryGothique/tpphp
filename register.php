@@ -2,12 +2,6 @@
 session_start();
 
 include_once('modeles/db_connexion.php');
-
-if (isset($_SESSION['userId'])) {
-    header('location: bienvenue.php');
-    // exit;
-    $_SESSION["success"] = "You are now logged in";
- }
 /**
  * Création de constante des erreurs possibles
  */
@@ -32,8 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_POST = filter_input_array(INPUT_POST, [
         'nom' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
         'mdp' => FILTER_SANITIZE_FULL_SPECIAL_CHARS
-
     ]);
+    
+
     /**
      * Initialisation des variables qui vont recevoir les datas des champs de formulaire
      */
@@ -86,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ':mdp' => password_hash($mdp, PASSWORD_DEFAULT)
                 )
             );
-            $message = "<span class='message'>compte crée ! </span>";
+            $message = "<span class='message'>compte crée !</span>";
         } else {
             $message = "<span class='message'>Le login existe déja ! </span>";
         }
@@ -130,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="form-control">
-            <input type="submit" class="btn btn-primary" value="VALIDER">
+            <input type="submit" class="btn btn-primary" value="VALIDER"> 
         </div>
 
     </form>
