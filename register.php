@@ -82,6 +82,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 )
             );
             $message = "<span class='message'>compte crée !</span>";
+
+            ///// refaire un select comme dans index
+            $rqt = 'SELECT * FROM utilisateurs 
+            WHERE nom = :nom'; 
+            $db_statement = $db_connexion->prepare($rqt);
+            $db_statement->execute(
+                array(
+                    ':nom' => $nom,
+                )
+            );
+            $data = $db_statement->fetch(PDO::FETCH_ASSOC);
+            $_SESSION['user'] = $data;
+           
+            header('location: includes/bienvenue.php');
         } else {
             $message = "<span class='message'>Le login existe déja ! </span>";
         }

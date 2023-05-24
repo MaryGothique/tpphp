@@ -1,3 +1,14 @@
+<?php
+session_start();
+if (isset($_SESSION['user'])) {
+    $nom = $_SESSION['user']['nom'];
+    
+} else {
+    header('location: ../index.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,15 +18,9 @@
     <title>Document</title>
 </head>
 <body>
-<h1>Bienvenue <?= $_POST['nom'] ?>! </h1>
+<h1>Bienvenue <?= $nom ?> !</h1>
 <?php
 
-echo 'créez vous votre article! ici';
-
-if (isset($_SESSION['session_id'])) {
-    header('Location:register.php');
-    exit;
-}
 
 ?>
 </body>

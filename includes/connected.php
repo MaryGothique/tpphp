@@ -2,7 +2,7 @@
 session_start();
 if (isset($_SESSION['user'])) {
     $nom = $_SESSION['user']['nom'];
-    //$userId = $_SESSION['userID'];
+    
 } else {
     header('location: ../index.php');
 }
@@ -20,6 +20,7 @@ if (isset($_SESSION['user'])) {
 
 <body>
     <h1>La page de <?= $nom ?> </h1>
+    <a href="classes/Articles.php">Créer votre Article</a>
  
 </body>
 </html>
