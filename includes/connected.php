@@ -1,8 +1,8 @@
 <?php
 session_start();
-
-if (isset($_SESSION['userId'])) {
-    $userId = $_SESSION['userId'];
+if (isset($_SESSION['user'])) {
+    $nom = $_SESSION['user']['nom'];
+    //$userId = $_SESSION['userID'];
 } else {
     header('location: ../index.php');
 }
@@ -16,8 +16,9 @@ if (isset($_SESSION['userId'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ma page</title>
 </head>
+
 <body>
-    <h1>La page de <?= $_POST['nom'] ?> </h1>
+    <h1>La page de <?= $nom ?> </h1>
  
 </body>
 </html>

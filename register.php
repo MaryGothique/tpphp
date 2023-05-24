@@ -3,9 +3,10 @@ session_start();
 
 include_once('modeles/db_connexion.php');
 
-if (isset($_SESSION['sessiond'])) {
+if (isset($_SESSION['userId'])) {
     header('location: bienvenue.php');
-     exit;
+    // exit;
+    $_SESSION["success"] = "You are now logged in";
  }
 /**
  * Création de constante des erreurs possibles

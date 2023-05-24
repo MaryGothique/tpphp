@@ -5,8 +5,8 @@ include_once("modeles/db_connexion.php");
 /**
  * les erreurs possible avec les constantes
  */
-const ERROR_REQUIRED = 'Signer le champ';
-const ERROR_PASSWORD_NUMBER_OF_CHARACTERS = 'le mot de passe n est pas bon';
+const ERROR_REQUIRED = 'Renseigner le champ';
+const ERROR_PASSWORD_NUMBER_OF_CHARACTERS = 'le mot de passe n\'est pas bon';
 
 /**
  * faire un tableau avec les erreurs possibles
@@ -65,11 +65,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
      * on execute une requête pour un tableau associatif
      */
     $data = $db_statement->fetch(PDO::FETCH_ASSOC);
-    
-    if (password_verify($mdp, $data['mdp'])) { // une fois que je me suis enregistréer, j'ai un herreur ici "Trying to access array offset on value of type bool" 
-        //mais j'ai aussi les message d'erreurs quand même
-        $_SESSION['userID'] = $data['Id'];
-        header('Location: connected.php');
+    if (password_verify($mdp, $data['mdp'])) {         
+        $_SESSION['user'] = $data;
+        header('Location: includes/connected.php');
     } else {
         $message = "<span class ='message'>Mot de passe incorrecte</span>";
     } 
@@ -82,17 +80,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 <html lang="fr">
 
 <head>
-    <?php require_once('includes/head.php'); ?>
-    <link rel="stylesheet" href="styles/main.css" />
+    
+    <link rel="stylesheet" href="styles/index.css" />
     <title>Accés à votre compte</title>
 
 </head>
 
 <body>
-    <section class="container">
+    <section class="navbar">
 
         <div class="block p-20 form-container">
-            <h1>Accès</h1>
+            <h1>Tp PHP</h1>
+
+            <h2>Access</h2>
             <div class="form-control">
                 <?= $message ?>
             </div>
