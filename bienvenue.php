@@ -13,7 +13,7 @@
 echo 'créez vous votre article! ici';
 
 if (isset($_SESSION['session_id'])) {
-   // header('Location: modeles/');
+    header('Location:register.php');
     exit;
 }
 

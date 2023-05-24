@@ -6,6 +6,7 @@ if (isset($_SESSION['userId'])) {
 } else {
     header('location: ../index.php');
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">

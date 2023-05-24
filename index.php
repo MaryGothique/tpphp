@@ -52,21 +52,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     if (!empty($mdp) || !empty($nom)) {
         //on verifie si le login et le mot de passe existent (requête sql)
     
-    $rqt = 'SELECT * FROM utilisateurs WHERE nom = :nom'; 
+    $rqt = 'SELECT * FROM utilisateurs 
+    WHERE nom = :nom'; 
     $db_statement = $db_connexion->prepare($rqt);
     $db_statement->execute(
         array(
             ':nom' => $nom,
         )
     );
+    
     /**
      * on execute une requête pour un tableau associatif
      */
     $data = $db_statement->fetch(PDO::FETCH_ASSOC);
     
-    if (password_verify($mdp, $data['mdp'])) {
+    if (password_verify($mdp, $data['mdp'])) { // une fois que je me suis enregistréer, j'ai un herreur ici "Trying to access array offset on value of type bool" 
+        //mais j'ai aussi les message d'erreurs quand même
         $_SESSION['userID'] = $data['Id'];
-        header('location: connected.php');
+        header('Location: connected.php');
     } else {
         $message = "<span class ='message'>Mot de passe incorrecte</span>";
     } 

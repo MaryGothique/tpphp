@@ -141,13 +141,13 @@ if (isset($_POST['register'])) {
 
 
 ?>
-<h1>Inserimento post:</h1>
+<h1>Ajouter mon Article:</h1>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-Titolo:<br>
+Titre:<br>
 <input name="titolo" type="text"><br />
-Testo:<br>
+Texte:<br>
 <textarea name="testo" cols="30" rows="10"></textarea><br />
-Autore:<br>
+Author:<br>
 <input name="autore" type="text"><br />
 <input name="submit" type="submit" value="Scrivi">
 </form>
