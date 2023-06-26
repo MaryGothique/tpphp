@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 /**
      * Initialisation des variables qui vont recevoir les datas des champs de formulaire
      */
-    $titre = $_POST['texte'] ?? '';
+    $titre = $_POST['titre'] ?? '';
     $texte = $_POST['texte'] ?? '';
 
     if (($titre) && ($texte)) {
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             /**
              * On insert notre utilisateur
              */
-            $sql = "INSERT INTO articles VALUES (DEFAULT,:titre,:article)";
+            $sql = "INSERT INTO articles VALUES (DEFAULT,:titre,:texte";
             $db_statement = $db_articles->prepare($sql);
             $db_statement->execute(
                 array(
@@ -68,6 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ':texte' => $texte
                 )
             );
+            
             $message = "<span class='message'>Article crée!</span>";
 
             ///// refaire un select comme dans index
