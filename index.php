@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     <section class="navbar">
 
         <div class="block p-20 form-container">
-            <h1>Tp PHP</h1>
+            <h1>Forum</h1>
 
             <h2>Access</h2>
             <div class="form-control">
